@@ -52,8 +52,8 @@ do
     type="uint32"
 
     case ${output[0]} in
-      "OK")
-        continue
+      current-*|total-*|"job-timeouts:")
+        type="uint32"
         ;;
       "version:")
         type="string"
@@ -68,18 +68,21 @@ do
         type="uint64"
         unit="seconds"
         ;;
-      "max-job-size:")
-        unit="bytes"
-        ;;
-      "binlog-max-size:")
-        type="uint64"
-        unit="bytes"
-        ;;
-      "id:")
-        type="string"
-        ;;
+      #"max-job-size:")
+      #  unit="bytes"
+      #  ;;
+      #"binlog-max-size:")
+      #  type="uint64"
+      #  unit="bytes"
+      #  ;;
+      #"id:")
+      #  type="string"
+      #  ;;
       "hostname:")
         type="string"
+        ;;
+      *)
+        continue
         ;;
     esac
 
